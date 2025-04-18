@@ -12,23 +12,118 @@
       src="https://unpkg.com/peerjs@1.2.0/dist/peerjs.min.js"
     ></script>
     <script src="/socket.io/socket.io.js" defer></script>
+    <script
+      src="https://kit.fontawesome.com/c939d0e917.js"
+      crossorigin="anonymous"
+    ></script>
     <script src="script.js" defer></script>
-    <title>Document</title>
+    <title>Video Chat</title>
     <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      }
+
+      body {
+        background-color: #1a1a1a;
+        color: white;
+      }
+
+      .main-container {
+        display: flex;
+        flex-direction: column;
+        height: 100vh;
+      }
+
+      .header {
+        background-color: #2a2a2a;
+        padding: 15px;
+        text-align: center;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+      }
+
+      .header h1 {
+        font-size: 24px;
+        color: #4ecca3;
+      }
+
       #video-grid {
         display: grid;
-        grid-template-columns: repeat(auto-fill, 300px);
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
         grid-auto-rows: 300px;
+        gap: 15px;
+        padding: 20px;
+        flex: 1;
+        overflow-y: auto;
+      }
+
+      .video-container {
+        position: relative;
+        background-color: #2a2a2a;
+        border-radius: 8px;
+        overflow: hidden;
       }
 
       video {
         width: 100%;
         height: 100%;
         object-fit: cover;
+        border-radius: 8px;
+      }
+
+      .controls {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: #2a2a2a;
+        padding: 15px;
+        gap: 20px;
+      }
+
+      .control-button {
+        background-color: #4ecca3;
+        color: white;
+        border: none;
+        border-radius: 50%;
+        width: 50px;
+        height: 50px;
+        font-size: 20px;
+        cursor: pointer;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        transition: all 0.3s ease;
+      }
+
+      .control-button:hover {
+        background-color: #3aa789;
+      }
+
+      .control-button.off {
+        background-color: #e74c3c;
+      }
+
+      .control-button.off:hover {
+        background-color: #c0392b;
       }
     </style>
   </head>
   <body>
-    <div id="video-grid"></div>
+    <div class="main-container">
+      <div class="header">
+        <h1>Video Chat Room</h1>
+      </div>
+      <div id="video-grid"></div>
+      <div class="controls">
+        <button id="muteButton" class="control-button">
+          <i class="fas fa-microphone"></i>
+        </button>
+        <button id="videoButton" class="control-button">
+          <i class="fas fa-video"></i>
+        </button>
+      </div>
+    </div>
   </body>
 </html>
